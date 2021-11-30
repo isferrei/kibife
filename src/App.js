@@ -10,9 +10,6 @@ import { OrderTable } from './components/OrderTable';
 
 import { formatPrice, formatSelectedItems } from './utils';
 
-import { pratinhos } from './menu/pratinhos';
-import { cremosinhos } from './menu/cremosinhos';
-
 import logo from './assets/logo.png';
 
 import './styles/global.css';
@@ -27,24 +24,24 @@ function App() {
     enabled: true,
     query: `
       query AppQuery($first: IntType) {
-        produtos: allProdutos (first: $first) {
+        aves: allAves (first: $first) {
           id
           nome
           preco
          descricao
-         categoria
          foto{
            id
            url
          }
         }
+        
       }`,
     variables: { first: 10 },
-    token: 'd2f922a9915dfe78ee841c99f65098',
+    token: '3d06b10bb86809c9273f9eee5d6bd0',
   });
 
-  const produtos = data ? data.produtos : [];
-  console.log(produtos);
+  const aves = data ? data.aves : [];
+  console.log(aves);
 
   function onDeselectItem(item) {
     setSelectedItems((arr) => arr.filter((value) => value !== item));
@@ -166,19 +163,10 @@ function App() {
   }
 
   useEffect(() => {
-    if (produtos) {
-      let categoria = produtos.map((i) => i.categoria);
-      return setCategorias(categoria);
-    }
-  }, [produtos]);
-
-  useEffect(() => {
     function calcTotalPrice() {
       let nTotalPrice = 0;
 
-      const produtos = selectedItems.filter(
-        (item) => item.categoria === 'produtos'
-      );
+      const aves = selectedItems;
 
       console.log(selectedItems);
       selectedItems.forEach((item) => {
@@ -233,9 +221,9 @@ function App() {
           </div>
         </section>
         <section id='menu'>
-          <section id='produtos'>
-            <h1>Produtos</h1>
-            {produtos.map((produto, i) => (
+          <section id='aves'>
+            <h1>Aves</h1>
+            {aves.map((produto, i) => (
               <div className='item-container' key={i}>
                 <MenuItem
                   image={produto.foto?.url ? produto.foto.url : ''}
