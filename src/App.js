@@ -33,6 +33,30 @@ function App() {
            id
            url
          }
+        },
+        bovinos: allBovinos (first: $first) {
+          id
+          nome
+          preco
+         descricao
+         foto{
+           id
+           url
+         }
+        },
+        suinos: allSuinos (first: $first) {
+          id
+          nome
+          preco
+         descricao
+         foto{
+           id
+           url
+         }
+        },
+        fretes: allFretes (first: $first) {
+         bairro
+         valor
         }
         
       }`,
@@ -41,7 +65,13 @@ function App() {
   });
 
   const aves = data ? data.aves : [];
-  console.log(aves);
+  const suinos = data ? data.suinos : [];
+  const bovinos = data ? data.bovinos : [];
+  const options = data
+    ? [{ value: 0.1, label: 'Selecione seu bairro...' }, data.fretes]
+    : [];
+
+  console.log(suinos);
 
   function onDeselectItem(item) {
     setSelectedItems((arr) => arr.filter((value) => value !== item));
@@ -183,7 +213,6 @@ function App() {
 
   console.log(totalPrice);
 
-  const options = [{ value: 0.1, label: 'Selecione seu bairro...' }];
   const [selectedValue, setSelectedValue] = useState(0.1);
   const handleChange = (e) => {
     setSelectedValue(e.value);
@@ -212,18 +241,60 @@ function App() {
         </p>
       </header>
       <main>
-        <section id='sale'>
-          <h1>Combos</h1>
-          <div>
-            <p>Kit com 4 cremosinhos - R$25,00.</p>
-            <span>* Desconto aplicado automaticamente</span>
-            <br></br>
-          </div>
-        </section>
         <section id='menu'>
           <section id='aves'>
             <h1>Aves</h1>
             {aves.map((produto, i) => (
+              <div className='item-container' key={i}>
+                <MenuItem
+                  image={produto.foto?.url ? produto.foto.url : ''}
+                  name={produto.nome}
+                  price={formatPrice(produto.preco)}
+                  description={produto.descricao}
+                  onSelect={() => setSelectedItems((arr) => [...arr, produto])}
+                  onDeselect={() => onDeselectItem(produto)}
+                />
+                {selectedItems.includes(produto) && (
+                  <MenuItemAmount
+                    addItem={() => addItem(produto)}
+                    removeItem={() => removeItem(produto)}
+                    itemAmount={
+                      selectedItems.filter((item) => item.nome === produto.nome)
+                        .length
+                    }
+                  />
+                )}
+              </div>
+            ))}
+          </section>
+          <section id='bovinos'>
+            <h1>Bovinos</h1>
+            {bovinos?.map((produto, i) => (
+              <div className='item-container' key={i}>
+                <MenuItem
+                  image={produto.foto?.url ? produto.foto.url : ''}
+                  name={produto.nome}
+                  price={formatPrice(produto.preco)}
+                  description={produto.descricao}
+                  onSelect={() => setSelectedItems((arr) => [...arr, produto])}
+                  onDeselect={() => onDeselectItem(produto)}
+                />
+                {selectedItems.includes(produto) && (
+                  <MenuItemAmount
+                    addItem={() => addItem(produto)}
+                    removeItem={() => removeItem(produto)}
+                    itemAmount={
+                      selectedItems.filter((item) => item.nome === produto.nome)
+                        .length
+                    }
+                  />
+                )}
+              </div>
+            ))}
+          </section>
+          <section id='suinos'>
+            <h1>Suinos</h1>
+            {suinos.map((produto, i) => (
               <div className='item-container' key={i}>
                 <MenuItem
                   image={produto.foto?.url ? produto.foto.url : ''}
@@ -260,7 +331,7 @@ function App() {
           </div>
         </section>
         <CreatableSelect
-          isClearable
+          isClearable={false}
           placeholder='Selecione seu bairro...'
           value={options.find((obj) => obj.value === selectedValue)} // set selected value
           options={options} // set list of the data
@@ -270,7 +341,7 @@ function App() {
         {selectedValue && (
           <div style={{ marginTop: 20, lineHeight: '25px' }}>
             <div>
-              <b>Valor do frete: </b> {freteexibir}
+              <b>Valor do frete: {freteexibir}</b>
             </div>
           </div>
         )}

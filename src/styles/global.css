@@ -14,7 +14,7 @@ html, body, #root {
   
 body, button, input, textarea {
   font: 400 1.6rem 'Poppins', sans-serif;
-  color: #333;
+  color: #000;
 }
 
 button{

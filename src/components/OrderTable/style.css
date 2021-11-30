@@ -11,7 +11,7 @@
 #order-table tr td {
   padding: 0.2rem 0;
   font-size: 1.4rem;
-  color: #444;
+  color: #fff;
 }
 
 #order-table tr:last-child td {

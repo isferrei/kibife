@@ -3,11 +3,12 @@
   flex-direction: column;
   align-items: center;
   padding: 6rem 2rem 4rem;
+  background: rgb(58, 58, 58);
 }
 
 #app > header h1 {
   margin: 0 auto;
-  color: #333;
+  color: #fff;
   text-align: center;
   font-size: 5rem;
 }
@@ -17,7 +18,7 @@
   max-width: 40rem;
   margin-top: 1.6rem;
   margin-bottom: 6rem;
-  color: #444;
+  color: #fff;
   text-align: center;
 }
 
@@ -26,9 +27,13 @@
   max-width: 100%;
 }
 
+#app main b{
+ color: #fff;
+}
+
 #app main #sale h1 {
   font-size: 2.6rem;
-  color: #343434;
+  color: #fff;
   margin-bottom: 1.4rem;
 }
 
@@ -46,7 +51,7 @@
 
 #app main #sale > div span {
   font-size: 1.1rem;
-  color: #4f4f4f;
+  color: #fff;
 }
 
 #app main #menu section {
@@ -58,7 +63,7 @@
 
 #app main #menu section h1 {
   font-size: 2.6rem;
-  color: #343434;
+  color: #fff;
 }
 
 #app main #menu section .item-container {
@@ -75,11 +80,12 @@
   margin: 0 auto;
   margin-top: 10px;
   padding: 1rem 2rem;
-  background: rgb(60,179,113);
+  background: rgb(179, 60, 60);
   font-weight: 500;
   color: #FFF;
   cursor: pointer;
   border-radius: 0.8rem;
+  width: 100%;
 }
 
 #app main #order:disabled {
@@ -87,8 +93,9 @@
 }
 
 #app input{
-  border-color: black;
+  border-color: #fff;
   border: 1px;
+  color:#000;
 
 }
 
