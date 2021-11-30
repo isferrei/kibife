@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+  
+:root {
+  font-size: 62.5%;
+}
+  
+html, body, #root {
+  height: 100%;
+}
+  
+body, button, input, textarea {
+  font: 400 1.6rem 'Poppins', sans-serif;
+  color: #333;
+}
+
+button{
+  margin-top: 3px;
+}
+  
+@media screen and (max-width: 550px) {
+  :root {
+    font-size: 60%;
+  }
+}

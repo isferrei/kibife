@@ -1,0 +1,99 @@
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6rem 2rem 4rem;
+}
+
+#app > header h1 {
+  margin: 0 auto;
+  color: #333;
+  text-align: center;
+  font-size: 5rem;
+}
+
+#app > header p {
+  margin: 0 auto;
+  max-width: 40rem;
+  margin-top: 1.6rem;
+  margin-bottom: 6rem;
+  color: #444;
+  text-align: center;
+}
+
+#app main {
+  width: 65rem;
+  max-width: 100%;
+}
+
+#app main #sale h1 {
+  font-size: 2.6rem;
+  color: #343434;
+  margin-bottom: 1.4rem;
+}
+
+#app main #sale > div {
+  padding: 1.2rem;
+  border: 1px solid #eee;
+  border-radius: 0.8rem;
+  margin-bottom: 2rem;
+}
+
+#app main #sale > div p {
+  font-size: 1.6rem;
+  padding: 0.4rem 0;
+}
+
+#app main #sale > div span {
+  font-size: 1.1rem;
+  color: #4f4f4f;
+}
+
+#app main #menu section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  margin-bottom: 2rem;
+}
+
+#app main #menu section h1 {
+  font-size: 2.6rem;
+  color: #343434;
+}
+
+#app main #menu section .item-container {
+  display: flex;
+  gap: 0.8rem;
+}
+
+#app main button:hover {
+  filter: brightness(0.9);
+}
+
+#app main #order {
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+  padding: 1rem 2rem;
+  background: rgb(60,179,113);
+  font-weight: 500;
+  color: #FFF;
+  cursor: pointer;
+  border-radius: 0.8rem;
+}
+
+#app main #order:disabled {
+  cursor: not-allowed;
+}
+
+#app input{
+  border-color: black;
+  border: 1px;
+
+}
+
+@media screen and (max-width: 550px) {
+  #app main > h1 {
+    font-size: 4rem;
+  }
+}
