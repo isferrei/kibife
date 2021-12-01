@@ -10,10 +10,16 @@
   
 html, body, #root {
   height: 100%;
+  color: #000;
+
 }
   
 body, button, input, textarea {
   font: 400 1.6rem 'Poppins', sans-serif;
+  color: #000;
+}
+
+.css-2613qy-menu {
   color: #000;
 }
 

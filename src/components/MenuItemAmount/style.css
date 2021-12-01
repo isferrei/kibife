@@ -20,6 +20,8 @@
   flex: 1;
   background: none;
   cursor: pointer;
+  color: #fff;
+
 }
 
 .item-amount button img {

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CreatableSelect from 'react-select/creatable';
 import { useQuerySubscription } from 'react-datocms';
-import AsyncSelect from 'react-select/async';
-import Select from 'react-select';
 
 import { MenuItem } from './components/MenuItem';
 import { MenuItemAmount } from './components/MenuItemAmount';
@@ -14,6 +12,7 @@ import logo from './assets/logo.png';
 
 import './styles/global.css';
 import './styles/App.css';
+import * as S from './styles/styles';
 
 function App() {
   const [selectedItems, setSelectedItems] = useState([]);
@@ -55,8 +54,8 @@ function App() {
          }
         },
         fretes: allFretes (first: $first) {
-         bairro
-         valor
+         label
+         value
         }
         
       }`,
@@ -67,9 +66,7 @@ function App() {
   const aves = data ? data.aves : [];
   const suinos = data ? data.suinos : [];
   const bovinos = data ? data.bovinos : [];
-  const options = data
-    ? [{ value: 0.1, label: 'Selecione seu bairro...' }, data.fretes]
-    : [];
+  const options = data ? [data.fretes] : [];
 
   console.log(suinos);
 
@@ -184,7 +181,7 @@ function App() {
 
     window
       .open(
-        `https://wa.me/5532998402901/?text=${window.encodeURIComponent(
+        `https://wa.me/553230265038/?text=${window.encodeURIComponent(
           message
         )}`,
         '_blank'
@@ -330,13 +327,16 @@ function App() {
             </span>
           </div>
         </section>
-        <CreatableSelect
-          isClearable={false}
-          placeholder='Selecione seu bairro...'
-          value={options.find((obj) => obj.value === selectedValue)} // set selected value
-          options={options} // set list of the data
-          onChange={handleChange} // assign onChange function
-        />
+        <S.Select>
+          <CreatableSelect
+            isClearable={false}
+            placeholder='Selecione seu bairro...'
+            value={options.find((obj) => obj.value === selectedValue)} // set selected value
+            options={options} // set list of the data
+            onChange={handleChange} // assign onChange function
+            styles={{ color: '#000' }}
+          />
+        </S.Select>
 
         {selectedValue && (
           <div style={{ marginTop: 20, lineHeight: '25px' }}>

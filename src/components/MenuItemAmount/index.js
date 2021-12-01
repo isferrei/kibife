@@ -1,4 +1,4 @@
-import arrowImg from '../../assets/arrow.png';
+import arrowImg from '../../assets/arrow.svg';
 
 import './style.css';
 
