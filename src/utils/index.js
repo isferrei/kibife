@@ -1,13 +1,14 @@
 function formatPrice(price) {
-  console.log(price);
   return price.toFixed(2).split('.').join(',');
 }
 
 function formatSelectedItems(selectedItems) {
   const uniqueItems = [];
 
-  selectedItems.forEach(item => {
-    const amount = uniqueItems.filter(sitem => sitem.name === item.name).length;
+  selectedItems.forEach((item) => {
+    const amount = uniqueItems.filter(
+      (sitem) => sitem.nome === item.nome
+    ).length;
 
     if (!amount) {
       uniqueItems.push(item);
@@ -16,8 +17,10 @@ function formatSelectedItems(selectedItems) {
 
   const formatedSelItems = [];
 
-  uniqueItems.forEach(item => {
-    const amount = selectedItems.filter(sitem => sitem.name === item.name).length;
+  uniqueItems.forEach((item) => {
+    const amount = selectedItems.filter(
+      (sitem) => sitem.nome === item.nome
+    ).length;
 
     formatedSelItems.push({ ...item, amount });
   });

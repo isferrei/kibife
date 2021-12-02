@@ -16,7 +16,7 @@ import * as S from './styles/styles';
 
 function App() {
   const [selectedItems, setSelectedItems] = useState([]);
-  const [categorias, setCategorias] = useState([]);
+  const [bairro, setBairro] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
 
   const { data } = useQuerySubscription({
@@ -66,9 +66,7 @@ function App() {
   const aves = data ? data.aves : [];
   const suinos = data ? data.suinos : [];
   const bovinos = data ? data.bovinos : [];
-  const options = data ? [data.fretes] : [];
-
-  console.log(suinos);
+  const options = data ? data.fretes : [];
 
   function onDeselectItem(item) {
     setSelectedItems((arr) => arr.filter((value) => value !== item));
@@ -94,7 +92,7 @@ function App() {
   }
 
   function makeOrder() {
-    if (totalPrice === 0 || selectedValue == 1) {
+    if (totalPrice === 0 || selectedValue === 1) {
       return;
     }
     let message = '';
@@ -109,73 +107,9 @@ function App() {
     message += `Total - R$${formatPrice(valorfinal)}\n\n`;
     message += `Endereço: ` + endereco + ', ';
 
-    var bairro;
-
-    if (selectedValue == 12) {
-      bairro = 'Aeroporto';
-    } else if (selectedValue == 10.1) {
-      bairro = 'Alto dos passos';
-    } else if (selectedValue == 25) {
-      bairro = 'Alphaville';
-    } else if (selectedValue == 15.1) {
-      bairro = 'Bandeirantes';
-    } else if (selectedValue == 15.2) {
-      bairro = 'Bom clima';
-    } else if (selectedValue == 15.3) {
-      bairro = 'Bom pastor';
-    } else if (selectedValue == 15.4) {
-      bairro = 'Bosque do imperador';
-    } else if (selectedValue == 15.12) {
-      bairro = 'Bosque dos pinheiros';
-    } else if (selectedValue == 15.13) {
-      bairro = 'Bosque imperial';
-    } else if (selectedValue == 10.2) {
-      bairro = 'Cascatinha';
-    } else if (selectedValue == 10.3) {
-      bairro = 'Centro';
-    } else if (selectedValue == 10.4) {
-      bairro = 'Costa Carvalho';
-    } else if (selectedValue == 10.12) {
-      bairro = 'Dom Bosco';
-    } else if (selectedValue == 10.13) {
-      bairro = 'Estrela Sul';
-    } else if (selectedValue == 10.14) {
-      bairro = 'Granbery';
-    } else if (selectedValue == 15.14) {
-      bairro = 'Granville';
-    } else if (selectedValue == 10.33) {
-      bairro = 'Jardim Glória';
-    } else if (selectedValue == 10.155) {
-      bairro = 'Jardim Laranjeiras';
-    } else if (selectedValue == 10.144) {
-      bairro = 'Poço Rico';
-    } else if (selectedValue == 15.15) {
-      bairro = 'Portal da Torre';
-    } else if (selectedValue == 15.155) {
-      bairro = 'Portal do Aeroporto';
-    } else if (selectedValue == 15.16) {
-      bairro = 'Quintas da Avenida';
-    } else if (selectedValue == 15.17) {
-      bairro = 'Salvaterra';
-    } else if (selectedValue == 10.15) {
-      bairro = 'Santa Helena';
-    } else if (selectedValue == 10.16) {
-      bairro = 'Santa Luzia';
-    } else if (selectedValue == 10.17) {
-      bairro = 'São Mateus';
-    } else if (selectedValue == 10.18) {
-      bairro = 'Sâo Pedro';
-    } else if (selectedValue == 15.18) {
-      bairro = 'Spina Ville';
-    } else if (selectedValue == 10.19) {
-      bairro = 'Teixeiras';
-    } else if (selectedValue == 15.19) {
-      bairro = 'Vale do Ipê';
-    } else bairro = selectedValue;
-
     message += bairro + `\n\n`;
 
-    if (frete == 0) {
+    if (frete === 0) {
       message += `Valor do frete: A calcular`;
     } else message += `Valor do frete: R$` + frete + `,00`;
 
@@ -193,9 +127,6 @@ function App() {
     function calcTotalPrice() {
       let nTotalPrice = 0;
 
-      const aves = selectedItems;
-
-      console.log(selectedItems);
       selectedItems.forEach((item) => {
         let price = item.preco;
 
@@ -208,12 +139,13 @@ function App() {
     calcTotalPrice();
   }, [selectedItems]);
 
-  console.log(totalPrice);
-
   const [selectedValue, setSelectedValue] = useState(0.1);
   const handleChange = (e) => {
     setSelectedValue(e.value);
+    setBairro(e.label);
   };
+
+  console.log(bairro);
 
   var frete = 0;
   var freteexibir = 0;
@@ -227,9 +159,12 @@ function App() {
   }
 
   var valorfinal = totalPrice + frete;
+
+  console.log(options);
+
   return (
     <div id='app'>
-      <img src={logo} />
+      <img src={logo} alt='Logo' />
       <header>
         <h1>Faça seus pedidos!</h1>
         <p>
@@ -241,22 +176,22 @@ function App() {
         <section id='menu'>
           <section id='aves'>
             <h1>Aves</h1>
-            {aves.map((produto, i) => (
+            {aves.map((ave, i) => (
               <div className='item-container' key={i}>
                 <MenuItem
-                  image={produto.foto?.url ? produto.foto.url : ''}
-                  name={produto.nome}
-                  price={formatPrice(produto.preco)}
-                  description={produto.descricao}
-                  onSelect={() => setSelectedItems((arr) => [...arr, produto])}
-                  onDeselect={() => onDeselectItem(produto)}
+                  image={ave.foto?.url ? ave.foto.url : ''}
+                  name={ave.nome}
+                  price={formatPrice(ave.preco)}
+                  description={ave.descricao}
+                  onSelect={() => setSelectedItems((arr) => [...arr, ave])}
+                  onDeselect={() => onDeselectItem(ave)}
                 />
-                {selectedItems.includes(produto) && (
+                {selectedItems.includes(ave) && (
                   <MenuItemAmount
-                    addItem={() => addItem(produto)}
-                    removeItem={() => removeItem(produto)}
+                    addItem={() => addItem(ave)}
+                    removeItem={() => removeItem(ave)}
                     itemAmount={
-                      selectedItems.filter((item) => item.nome === produto.nome)
+                      selectedItems.filter((item) => item.nome === ave.nome)
                         .length
                     }
                   />
@@ -266,22 +201,22 @@ function App() {
           </section>
           <section id='bovinos'>
             <h1>Bovinos</h1>
-            {bovinos?.map((produto, i) => (
+            {bovinos?.map((bovino, i) => (
               <div className='item-container' key={i}>
                 <MenuItem
-                  image={produto.foto?.url ? produto.foto.url : ''}
-                  name={produto.nome}
-                  price={formatPrice(produto.preco)}
-                  description={produto.descricao}
-                  onSelect={() => setSelectedItems((arr) => [...arr, produto])}
-                  onDeselect={() => onDeselectItem(produto)}
+                  image={bovino.foto?.url ? bovino.foto.url : ''}
+                  name={bovino.nome}
+                  price={formatPrice(bovino.preco)}
+                  description={bovino.descricao}
+                  onSelect={() => setSelectedItems((arr) => [...arr, bovino])}
+                  onDeselect={() => onDeselectItem(bovino)}
                 />
-                {selectedItems.includes(produto) && (
+                {selectedItems.includes(bovino) && (
                   <MenuItemAmount
-                    addItem={() => addItem(produto)}
-                    removeItem={() => removeItem(produto)}
+                    addItem={() => addItem(bovino)}
+                    removeItem={() => removeItem(bovino)}
                     itemAmount={
-                      selectedItems.filter((item) => item.nome === produto.nome)
+                      selectedItems.filter((item) => item.nome === bovino.nome)
                         .length
                     }
                   />
@@ -291,22 +226,22 @@ function App() {
           </section>
           <section id='suinos'>
             <h1>Suinos</h1>
-            {suinos.map((produto, i) => (
+            {suinos.map((suino, i) => (
               <div className='item-container' key={i}>
                 <MenuItem
-                  image={produto.foto?.url ? produto.foto.url : ''}
-                  name={produto.nome}
-                  price={formatPrice(produto.preco)}
-                  description={produto.descricao}
-                  onSelect={() => setSelectedItems((arr) => [...arr, produto])}
-                  onDeselect={() => onDeselectItem(produto)}
+                  image={suino.foto?.url ? suino.foto.url : ''}
+                  name={suino.nome}
+                  price={formatPrice(suino.preco)}
+                  description={suino.descricao}
+                  onSelect={() => setSelectedItems((arr) => [...arr, suino])}
+                  onDeselect={() => onDeselectItem(suino)}
                 />
-                {selectedItems.includes(produto) && (
+                {selectedItems.includes(suino) && (
                   <MenuItemAmount
-                    addItem={() => addItem(produto)}
-                    removeItem={() => removeItem(produto)}
+                    addItem={() => addItem(suino)}
+                    removeItem={() => removeItem(suino)}
                     itemAmount={
-                      selectedItems.filter((item) => item.nome === produto.nome)
+                      selectedItems.filter((item) => item.nome === suino.nome)
                         .length
                     }
                   />
