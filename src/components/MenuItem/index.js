@@ -28,7 +28,11 @@ export function MenuItem({
       onClick={handleMenuItemClick}
     >
       <S.MenuItem>
-        {image !== '' && <img src={image} alt={name} width='50px' />}
+        {image !== '' && (
+          <S.Miniature>
+            <img src={image} alt={name} />
+          </S.Miniature>
+        )}
         <S.Content>
           <header>
             <h2>{name}</h2>
