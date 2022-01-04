@@ -9,6 +9,9 @@ import { OrderTable } from './components/OrderTable';
 import { formatPrice, formatSelectedItems } from './utils';
 
 import logo from './assets/logo.png';
+import pix from './assets/pix.png';
+import card from './assets/card.svg';
+import money from './assets/money.svg';
 
 import './styles/global.css';
 import './styles/App.css';
@@ -16,6 +19,7 @@ import * as S from './styles/styles';
 
 function App() {
   const [selectedItems, setSelectedItems] = useState([]);
+  const [paymentMethod, setPaymentMethod] = useState('');
   const [bairro, setBairro] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -104,14 +108,16 @@ function App() {
           item.preco
         )}\n`)
     );
-    message += `Total - R$${formatPrice(valorfinal)}\n\n`;
-    message += `Endereço: ` + endereco + ', ';
-
-    message += bairro + `\n\n`;
 
     if (frete === 0) {
       message += `Valor do frete: A calcular`;
-    } else message += `Valor do frete: R$` + frete + `,00`;
+    } else message += `Valor do frete: R$` + frete + `,00\n\n`;
+
+    message += `Total - R$${formatPrice(valorfinal)}\n\n`;
+    message += `Forma de pagamento:${paymentMethod}\n\n`;
+    message += `Endereço: ` + endereco + ', ';
+
+    message += bairro + `\n\n`;
 
     window
       .open(
@@ -161,6 +167,7 @@ function App() {
   var valorfinal = totalPrice + frete;
 
   console.log(options);
+  console.log(paymentMethod);
 
   return (
     <div id='app'>
@@ -280,7 +287,60 @@ function App() {
             </div>
           </div>
         )}
-
+        <S.PaymentSection>
+          <h1>Pagamento</h1>
+          <span>
+            <input
+              type='radio'
+              id='pix'
+              name='payment'
+              value='Pix'
+              selected={paymentMethod.toLocaleLowerCase() === 'pix'}
+              onClick={(e) => setPaymentMethod(e.target.value)}
+            />
+            <label for='pix'>
+              <img src={pix} alt='pix' />
+              Pix
+            </label>
+          </span>
+          <span>
+            <input
+              type='radio'
+              id='dinheiro'
+              name='payment'
+              value='Dinheiro'
+              selected={paymentMethod.toLocaleLowerCase() === 'dinheiro'}
+              onClick={(e) => setPaymentMethod(e.target.value)}
+            />
+            <label for='dinheiro'>
+              <img src={money} alt='money' />
+              Dinheiro
+            </label>
+          </span>
+          <span>
+            <input
+              type='radio'
+              id='cartao'
+              name='payment'
+              value='Cartão'
+              selected={paymentMethod.toLocaleLowerCase() === 'cartão'}
+              onClick={(e) => setPaymentMethod(e.target.value)}
+            />
+            <label for='cartao'>
+              {' '}
+              <img src={card} alt='card' />
+              Cartão
+            </label>
+          </span>
+        </S.PaymentSection>
+        {paymentMethod.toLocaleLowerCase() === 'pix' && (
+          <S.Message>
+            <span>
+              Por favor, fazer pix para o CNPJ: <b>39.357.049/0001-31</b> e
+              enviar o comprovante por whatsapp
+            </span>
+          </S.Message>
+        )}
         <button
           id='order'
           type='button'
