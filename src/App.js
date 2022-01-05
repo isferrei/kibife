@@ -174,6 +174,7 @@ function App() {
       <img src={logo} alt='Logo' width='100%' />
       <header>
         <h1>Faça seus pedidos!</h1>
+
         <p>
           Clique nos ítens para seleciona-los, adicione a quantidade desejada e
           seu endereço. Finalizaremos seu pedido via WhatsApp!
