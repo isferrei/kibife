@@ -10,6 +10,7 @@ export const PaymentSection = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 20px 0;
+  flex-direction: column;
 
   h1 {
     color: #fff;

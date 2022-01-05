@@ -171,7 +171,7 @@ function App() {
 
   return (
     <div id='app'>
-      <img src={logo} alt='Logo' />
+      <img src={logo} alt='Logo' width='100%' />
       <header>
         <h1>Faça seus pedidos!</h1>
         <p>
@@ -290,47 +290,49 @@ function App() {
         <S.PaymentSection>
           <h1>Pagamento</h1>
           <span>
-            <input
-              type='radio'
-              id='pix'
-              name='payment'
-              value='Pix'
-              selected={paymentMethod.toLocaleLowerCase() === 'pix'}
-              onClick={(e) => setPaymentMethod(e.target.value)}
-            />
-            <label for='pix'>
-              <img src={pix} alt='pix' />
-              Pix
-            </label>
-          </span>
-          <span>
-            <input
-              type='radio'
-              id='dinheiro'
-              name='payment'
-              value='Dinheiro'
-              selected={paymentMethod.toLocaleLowerCase() === 'dinheiro'}
-              onClick={(e) => setPaymentMethod(e.target.value)}
-            />
-            <label for='dinheiro'>
-              <img src={money} alt='money' />
-              Dinheiro
-            </label>
-          </span>
-          <span>
-            <input
-              type='radio'
-              id='cartao'
-              name='payment'
-              value='Cartão'
-              selected={paymentMethod.toLocaleLowerCase() === 'cartão'}
-              onClick={(e) => setPaymentMethod(e.target.value)}
-            />
-            <label for='cartao'>
-              {' '}
-              <img src={card} alt='card' />
-              Cartão
-            </label>
+            <span>
+              <input
+                type='radio'
+                id='pix'
+                name='payment'
+                value='Pix'
+                selected={paymentMethod.toLocaleLowerCase() === 'pix'}
+                onClick={(e) => setPaymentMethod(e.target.value)}
+              />
+              <label for='pix'>
+                <img src={pix} alt='pix' />
+                Pix
+              </label>
+            </span>
+            <span>
+              <input
+                type='radio'
+                id='dinheiro'
+                name='payment'
+                value='Dinheiro'
+                selected={paymentMethod.toLocaleLowerCase() === 'dinheiro'}
+                onClick={(e) => setPaymentMethod(e.target.value)}
+              />
+              <label for='dinheiro'>
+                <img src={money} alt='money' />
+                Dinheiro
+              </label>
+            </span>
+            <span>
+              <input
+                type='radio'
+                id='cartao'
+                name='payment'
+                value='Cartão'
+                selected={paymentMethod.toLocaleLowerCase() === 'cartão'}
+                onClick={(e) => setPaymentMethod(e.target.value)}
+              />
+              <label for='cartao'>
+                {' '}
+                <img src={card} alt='card' />
+                Cartão
+              </label>
+            </span>
           </span>
         </S.PaymentSection>
         {paymentMethod.toLocaleLowerCase() === 'pix' && (
