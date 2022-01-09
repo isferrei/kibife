@@ -8,7 +8,7 @@ export const Select = styled.div`
 
 export const PaymentSection = styled.div`
   display: flex;
-  justify-content: space-between;
+
   margin: 20px 0;
   flex-direction: column;
 
@@ -16,20 +16,23 @@ export const PaymentSection = styled.div`
     color: #fff;
   }
   span {
+    width: 100%;
     color: #fff;
     align-items: center;
     display: flex;
     flex-direction: row;
+    justify-content: start;
+    margin: 10px 0;
   }
   input {
-    opacity: 0;
+    display: none;
   }
   input:checked + label {
     background: ${(selected) => (selected ? '#0003' : 'none')};
   }
   img {
-    width: 50px;
-    height: 50px;
+    width: 20px;
+    height: 20px;
   }
   label {
     display: flex;

@@ -105,7 +105,7 @@ function App() {
   const diversos = data ? data.diversos : [];
 
   const options = data ? data.fretes : [];
-
+  
   function onDeselectItem(item) {
     setSelectedItems((arr) => arr.filter((value) => value !== item));
   }
