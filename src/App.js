@@ -105,7 +105,7 @@ function App() {
   const diversos = data ? data.diversos : [];
 
   const options = data ? data.fretes : [];
-  
+
   function onDeselectItem(item) {
     setSelectedItems((arr) => arr.filter((value) => value !== item));
   }
@@ -205,7 +205,7 @@ function App() {
 
   return (
     <div id='app'>
-      <img src={logo} alt='Logo' width='100%' />
+      <img src={logo} alt='Logo' className='logo' />
       <header>
         <h1>Faça seus pedidos!</h1>
 
