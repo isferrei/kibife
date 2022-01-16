@@ -6,6 +6,33 @@ export const Select = styled.div`
   }
 `;
 
+export const TrocoCondition = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #fff;
+
+  div {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+`;
+
+export const TrocoSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+
+  input {
+    padding: 10px;
+    border-radius: 5px;
+  }
+`;
+
 export const PaymentSection = styled.div`
   display: flex;
 
