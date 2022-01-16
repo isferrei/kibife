@@ -371,9 +371,11 @@ function App() {
             ))}
           </section>
         </section>
-        {totalPrice > 0 && (
-          <OrderTable totalPrice={valorfinal} selectedItems={selectedItems} />
-        )}
+        <S.Total>
+          {totalPrice > 0 && (
+            <OrderTable totalPrice={valorfinal} selectedItems={selectedItems} />
+          )}
+        </S.Total>
         <section id='sale'>
           <div>
             <span>

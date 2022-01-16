@@ -22,6 +22,10 @@ export const TrocoCondition = styled.div`
   }
 `;
 
+export const Total = styled.div`
+  max-width: 100vw;
+`;
+
 export const TrocoSection = styled.div`
   display: flex;
   flex-direction: column;
