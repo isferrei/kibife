@@ -6,9 +6,40 @@ export const Select = styled.div`
   }
 `;
 
+export const TrocoCondition = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #fff;
+
+  div {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+`;
+
+export const Total = styled.div`
+  max-width: 100vw;
+`;
+
+export const TrocoSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+
+  input {
+    padding: 10px;
+    border-radius: 5px;
+  }
+`;
+
 export const PaymentSection = styled.div`
   display: flex;
-  justify-content: space-between;
+
   margin: 20px 0;
   flex-direction: column;
 
@@ -16,20 +47,23 @@ export const PaymentSection = styled.div`
     color: #fff;
   }
   span {
+    width: 100%;
     color: #fff;
     align-items: center;
     display: flex;
     flex-direction: row;
+    justify-content: start;
+    margin: 10px 0;
   }
   input {
-    opacity: 0;
+    display: none;
   }
   input:checked + label {
     background: ${(selected) => (selected ? '#0003' : 'none')};
   }
   img {
-    width: 50px;
-    height: 50px;
+    width: 20px;
+    height: 20px;
   }
   label {
     display: flex;

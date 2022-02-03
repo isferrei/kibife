@@ -6,14 +6,16 @@
   background: rgb(58, 58, 58);
 }
 
-#app > header h1 {
+
+
+#app>header h1 {
   margin: 0 auto;
   color: #fff;
   text-align: center;
   font-size: 5rem;
 }
 
-#app > header p {
+#app>header p {
   margin: 0 auto;
   max-width: 40rem;
   margin-top: 1.6rem;
@@ -27,8 +29,8 @@
   max-width: 100%;
 }
 
-#app main b{
- color: #fff;
+#app main b {
+  color: #fff;
 }
 
 #app main #sale h1 {
@@ -37,19 +39,19 @@
   margin-bottom: 1.4rem;
 }
 
-#app main #sale > div {
+#app main #sale>div {
   padding: 1.2rem;
   border: 1px solid #eee;
   border-radius: 0.8rem;
   margin-bottom: 2rem;
 }
 
-#app main #sale > div p {
+#app main #sale>div p {
   font-size: 1.6rem;
   padding: 0.4rem 0;
 }
 
-#app main #sale > div span {
+#app main #sale>div span {
   font-size: 1.1rem;
   color: #fff;
 }
@@ -92,19 +94,27 @@
   cursor: not-allowed;
 }
 
-#app input{
+#app input {
   border-color: #fff;
   border: 1px;
-  color:#000;
+  color: #000;
 
 }
 
+.logo {
+  width: 60%;
+}
+
 .css-2613qy-menu {
-    color: #000;
-  }
+  color: #000;
+}
 
 @media screen and (max-width: 550px) {
-  #app main > h1 {
+  #app main>h1 {
     font-size: 4rem;
+  }
+
+  .logo {
+    width: 100%;
   }
 }

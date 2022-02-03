@@ -22,6 +22,8 @@ function App() {
   const [paymentMethod, setPaymentMethod] = useState('');
   const [bairro, setBairro] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [troco, setTroco] = useState('');
+  const [necessitaTroco, setNecessitaTroco] = useState(false);
 
   const { data } = useQuerySubscription({
     enabled: true,
@@ -104,6 +106,10 @@ function App() {
   const bandeijados = data ? data.bandeijados : [];
   const bebidas = data ? data.bebidas : [];
   const diversos = data ? data.diversos : [];
+<<<<<<< HEAD
+=======
+
+>>>>>>> 543b66058b1d16c4ddcec84fcb0f762365eb13b6
   const options = data ? data.fretes : [];
   console.log(aves, bovinos, suinos, bandeijados, bebidas, diversos, options)
 
@@ -145,13 +151,15 @@ function App() {
     );
 
     if (frete === 0) {
-      message += `Valor do frete: A calcular`;
+      message += `Valor do frete: A calcular\n\n`;
     } else message += `Valor do frete: R$` + frete + `,00\n\n`;
 
     message += `Total - R$${formatPrice(valorfinal)}\n\n`;
-    message += `Forma de pagamento:${paymentMethod}\n\n`;
+    message += `Forma de pagamento: ${paymentMethod}\n\n`;
+    message += `Necessita troco? ${
+      necessitaTroco ? `Sim, troco para: ${troco},00` : `Não`
+    }\n\n`;
     message += `Endereço: ` + endereco + ', ';
-
     message += bairro + `\n\n`;
 
     window
@@ -186,7 +194,10 @@ function App() {
     setBairro(e.label);
   };
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 543b66058b1d16c4ddcec84fcb0f762365eb13b6
   var frete = 0;
   var freteexibir = 0;
 
@@ -200,10 +211,14 @@ function App() {
 
   var valorfinal = totalPrice + frete;
 
+<<<<<<< HEAD
+=======
+  console.log(necessitaTroco);
+>>>>>>> 543b66058b1d16c4ddcec84fcb0f762365eb13b6
 
   return (
     <div id='app'>
-      <img src={logo} alt='Logo' width='100%' />
+      <img src={logo} alt='Logo' className='logo' />
       <header>
         <h1>Faça seus pedidos!</h1>
 
@@ -298,7 +313,13 @@ function App() {
                   name={bandeijado.nome}
                   price={formatPrice(bandeijado.preco)}
                   description={bandeijado.descricao}
+<<<<<<< HEAD
                   onSelect={() => setSelectedItems((arr) => [...arr, bandeijado])}
+=======
+                  onSelect={() =>
+                    setSelectedItems((arr) => [...arr, bandeijado])
+                  }
+>>>>>>> 543b66058b1d16c4ddcec84fcb0f762365eb13b6
                   onDeselect={() => onDeselectItem(bandeijado)}
                 />
                 {selectedItems.includes(bandeijado) && (
@@ -306,8 +327,14 @@ function App() {
                     addItem={() => addItem(bandeijado)}
                     removeItem={() => removeItem(bandeijado)}
                     itemAmount={
+<<<<<<< HEAD
                       selectedItems.filter((item) => item.nome === bandeijado.nome)
                         .length
+=======
+                      selectedItems.filter(
+                        (item) => item.nome === bandeijado.nome
+                      ).length
+>>>>>>> 543b66058b1d16c4ddcec84fcb0f762365eb13b6
                     }
                   />
                 )}
@@ -315,7 +342,11 @@ function App() {
             ))}
           </section>
           <section id='bebidas'>
+<<<<<<< HEAD
             <h1>bebidas</h1>
+=======
+            <h1>Bebidas</h1>
+>>>>>>> 543b66058b1d16c4ddcec84fcb0f762365eb13b6
             {bebidas.map((bebida, i) => (
               <div className='item-container' key={i}>
                 <MenuItem
@@ -340,7 +371,11 @@ function App() {
             ))}
           </section>
           <section id='diversos'>
+<<<<<<< HEAD
             <h1>diversos</h1>
+=======
+            <h1>Diversos</h1>
+>>>>>>> 543b66058b1d16c4ddcec84fcb0f762365eb13b6
             {diversos.map((diverso, i) => (
               <div className='item-container' key={i}>
                 <MenuItem
@@ -365,9 +400,11 @@ function App() {
             ))}
           </section>
         </section>
-        {totalPrice > 0 && (
-          <OrderTable totalPrice={valorfinal} selectedItems={selectedItems} />
-        )}
+        <S.Total>
+          {totalPrice > 0 && (
+            <OrderTable totalPrice={valorfinal} selectedItems={selectedItems} />
+          )}
+        </S.Total>
         <section id='sale'>
           <div>
             <span>
@@ -443,6 +480,44 @@ function App() {
             </span>
           </span>
         </S.PaymentSection>
+        {paymentMethod.toLocaleLowerCase() === 'dinheiro' && (
+          <>
+            <S.TrocoCondition>
+              <span>Necessita troco?</span>
+              <div>
+                <input
+                  type='radio'
+                  name='troco'
+                  value='sim'
+                  id='sim'
+                  onChange={() => setNecessitaTroco(true)}
+                />
+                <label for='sim'>Sim</label>
+
+                <input
+                  type='radio'
+                  name='troco'
+                  value='não'
+                  id='não'
+                  onChange={() => setNecessitaTroco(false)}
+                />
+                <label for='não'>Não</label>
+              </div>
+            </S.TrocoCondition>
+            <S.TrocoSection>
+              {necessitaTroco && (
+                <>
+                  <label>Troco para quanto?</label>
+                  <input
+                    type='text'
+                    placeholder='Insira o valor de pagamento'
+                    onChange={(e) => setTroco(e.target.value)}
+                  />
+                </>
+              )}
+            </S.TrocoSection>
+          </>
+        )}
         {paymentMethod.toLocaleLowerCase() === 'pix' && (
           <S.Message>
             <span>
