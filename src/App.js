@@ -106,12 +106,7 @@ function App() {
   const bandeijados = data ? data.bandeijados : [];
   const bebidas = data ? data.bebidas : [];
   const diversos = data ? data.diversos : [];
-<<<<<<< HEAD
-=======
-
->>>>>>> 543b66058b1d16c4ddcec84fcb0f762365eb13b6
   const options = data ? data.fretes : [];
-  console.log(aves, bovinos, suinos, bandeijados, bebidas, diversos, options)
 
   function onDeselectItem(item) {
     setSelectedItems((arr) => arr.filter((value) => value !== item));
@@ -156,9 +151,8 @@ function App() {
 
     message += `Total - R$${formatPrice(valorfinal)}\n\n`;
     message += `Forma de pagamento: ${paymentMethod}\n\n`;
-    message += `Necessita troco? ${
-      necessitaTroco ? `Sim, troco para: ${troco},00` : `Não`
-    }\n\n`;
+    message += `Necessita troco? ${necessitaTroco ? `Sim, troco para: ${troco},00` : `Não`
+      }\n\n`;
     message += `Endereço: ` + endereco + ', ';
     message += bairro + `\n\n`;
 
@@ -211,10 +205,6 @@ function App() {
 
   var valorfinal = totalPrice + frete;
 
-<<<<<<< HEAD
-=======
-  console.log(necessitaTroco);
->>>>>>> 543b66058b1d16c4ddcec84fcb0f762365eb13b6
 
   return (
     <div id='app'>
@@ -313,13 +303,9 @@ function App() {
                   name={bandeijado.nome}
                   price={formatPrice(bandeijado.preco)}
                   description={bandeijado.descricao}
-<<<<<<< HEAD
-                  onSelect={() => setSelectedItems((arr) => [...arr, bandeijado])}
-=======
                   onSelect={() =>
                     setSelectedItems((arr) => [...arr, bandeijado])
                   }
->>>>>>> 543b66058b1d16c4ddcec84fcb0f762365eb13b6
                   onDeselect={() => onDeselectItem(bandeijado)}
                 />
                 {selectedItems.includes(bandeijado) && (
@@ -327,14 +313,9 @@ function App() {
                     addItem={() => addItem(bandeijado)}
                     removeItem={() => removeItem(bandeijado)}
                     itemAmount={
-<<<<<<< HEAD
-                      selectedItems.filter((item) => item.nome === bandeijado.nome)
-                        .length
-=======
                       selectedItems.filter(
                         (item) => item.nome === bandeijado.nome
                       ).length
->>>>>>> 543b66058b1d16c4ddcec84fcb0f762365eb13b6
                     }
                   />
                 )}
@@ -342,11 +323,7 @@ function App() {
             ))}
           </section>
           <section id='bebidas'>
-<<<<<<< HEAD
-            <h1>bebidas</h1>
-=======
             <h1>Bebidas</h1>
->>>>>>> 543b66058b1d16c4ddcec84fcb0f762365eb13b6
             {bebidas.map((bebida, i) => (
               <div className='item-container' key={i}>
                 <MenuItem
@@ -371,11 +348,7 @@ function App() {
             ))}
           </section>
           <section id='diversos'>
-<<<<<<< HEAD
-            <h1>diversos</h1>
-=======
             <h1>Diversos</h1>
->>>>>>> 543b66058b1d16c4ddcec84fcb0f762365eb13b6
             {diversos.map((diverso, i) => (
               <div className='item-container' key={i}>
                 <MenuItem
