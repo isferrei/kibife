@@ -188,10 +188,6 @@ function App() {
     setBairro(e.label);
   };
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 543b66058b1d16c4ddcec84fcb0f762365eb13b6
   var frete = 0;
   var freteexibir = 0;
 
