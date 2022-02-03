@@ -1,5 +1,9 @@
 function formatPrice(price) {
-  return price.toFixed(2).split('.').join(',');
+  if (price) {
+    return price.toFixed(2).split('.').join(',');
+  } else {
+    return 0
+  }
 }
 
 function formatSelectedItems(selectedItems) {

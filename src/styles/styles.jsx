@@ -50,3 +50,14 @@ export const Message = styled.div`
     color: #fff;
   }
 `;
+
+export const Footer = styled.div`
+  display: flex;
+  margin-top: 30px;
+  color: #fff;
+
+  a{
+    text-decoration: none;
+    color: #fff;
+  }
+`;

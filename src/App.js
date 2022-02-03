@@ -57,6 +57,36 @@ function App() {
            url
          }
         },
+        bandeijados: allBandeijados (first: $first) {
+          id
+          nome
+          preco
+         descricao
+         foto{
+           id
+           url
+         }
+        },
+        bebidas: allBebidas (first: $first) {
+          id
+          nome
+          preco
+         descricao
+         foto{
+           id
+           url
+         }
+        },
+        diversos: allDiversos (first: $first) {
+          id
+          nome
+          preco
+         descricao
+         foto{
+           id
+           url
+         }
+        },
         fretes: allFretes (first: $first) {
          label
          value
@@ -67,10 +97,15 @@ function App() {
     token: '3d06b10bb86809c9273f9eee5d6bd0',
   });
 
+
   const aves = data ? data.aves : [];
   const suinos = data ? data.suinos : [];
   const bovinos = data ? data.bovinos : [];
+  const bandeijados = data ? data.bandeijados : [];
+  const bebidas = data ? data.bebidas : [];
+  const diversos = data ? data.diversos : [];
   const options = data ? data.fretes : [];
+  console.log(aves, bovinos, suinos, bandeijados, bebidas, diversos, options)
 
   function onDeselectItem(item) {
     setSelectedItems((arr) => arr.filter((value) => value !== item));
@@ -104,9 +139,9 @@ function App() {
     var endereco = prompt('Por gentileza, informe a rua para entrega:');
     formatedSelItems.forEach(
       (item) =>
-        (message += `${item.nome} - ${item.amount} x R$${formatPrice(
-          item.preco
-        )}\n`)
+      (message += `${item.nome} - ${item.amount} x R$${formatPrice(
+        item.preco
+      )}\n`)
     );
 
     if (frete === 0) {
@@ -151,7 +186,6 @@ function App() {
     setBairro(e.label);
   };
 
-  console.log(bairro);
 
   var frete = 0;
   var freteexibir = 0;
@@ -166,8 +200,6 @@ function App() {
 
   var valorfinal = totalPrice + frete;
 
-  console.log(options);
-  console.log(paymentMethod);
 
   return (
     <div id='app'>
@@ -250,6 +282,81 @@ function App() {
                     removeItem={() => removeItem(suino)}
                     itemAmount={
                       selectedItems.filter((item) => item.nome === suino.nome)
+                        .length
+                    }
+                  />
+                )}
+              </div>
+            ))}
+          </section>
+          <section id='bandeijados'>
+            <h1>Bandeijados</h1>
+            {bandeijados.map((bandeijado, i) => (
+              <div className='item-container' key={i}>
+                <MenuItem
+                  image={bandeijado.foto?.url ? bandeijado.foto.url : ''}
+                  name={bandeijado.nome}
+                  price={formatPrice(bandeijado.preco)}
+                  description={bandeijado.descricao}
+                  onSelect={() => setSelectedItems((arr) => [...arr, bandeijado])}
+                  onDeselect={() => onDeselectItem(bandeijado)}
+                />
+                {selectedItems.includes(bandeijado) && (
+                  <MenuItemAmount
+                    addItem={() => addItem(bandeijado)}
+                    removeItem={() => removeItem(bandeijado)}
+                    itemAmount={
+                      selectedItems.filter((item) => item.nome === bandeijado.nome)
+                        .length
+                    }
+                  />
+                )}
+              </div>
+            ))}
+          </section>
+          <section id='bebidas'>
+            <h1>bebidas</h1>
+            {bebidas.map((bebida, i) => (
+              <div className='item-container' key={i}>
+                <MenuItem
+                  image={bebida.foto?.url ? bebida.foto.url : ''}
+                  name={bebida.nome}
+                  price={formatPrice(bebida.preco)}
+                  description={bebida.descricao}
+                  onSelect={() => setSelectedItems((arr) => [...arr, bebida])}
+                  onDeselect={() => onDeselectItem(bebida)}
+                />
+                {selectedItems.includes(bebida) && (
+                  <MenuItemAmount
+                    addItem={() => addItem(bebida)}
+                    removeItem={() => removeItem(bebida)}
+                    itemAmount={
+                      selectedItems.filter((item) => item.nome === bebida.nome)
+                        .length
+                    }
+                  />
+                )}
+              </div>
+            ))}
+          </section>
+          <section id='diversos'>
+            <h1>diversos</h1>
+            {diversos.map((diverso, i) => (
+              <div className='item-container' key={i}>
+                <MenuItem
+                  image={diverso.foto?.url ? diverso.foto.url : ''}
+                  name={diverso.nome}
+                  price={formatPrice(diverso.preco)}
+                  description={diverso.descricao}
+                  onSelect={() => setSelectedItems((arr) => [...arr, diverso])}
+                  onDeselect={() => onDeselectItem(diverso)}
+                />
+                {selectedItems.includes(diverso) && (
+                  <MenuItemAmount
+                    addItem={() => addItem(diverso)}
+                    removeItem={() => removeItem(diverso)}
+                    itemAmount={
+                      selectedItems.filter((item) => item.nome === diverso.nome)
                         .length
                     }
                   />
@@ -353,6 +460,7 @@ function App() {
           Fazer pedido
         </button>
       </main>
+      <S.Footer><a href='https://www.instagram.com/otimizatechjf/'>desenvolvido por: Otimiza Tech</a></S.Footer>
     </div>
   );
 }
