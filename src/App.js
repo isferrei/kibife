@@ -95,7 +95,7 @@ function App() {
         }
         
       }`,
-    variables: { first: 10 },
+    variables: { first: 100 },
     token: '3d06b10bb86809c9273f9eee5d6bd0',
   });
 
@@ -107,6 +107,7 @@ function App() {
   const bebidas = data ? data.bebidas : [];
   const diversos = data ? data.diversos : [];
   const options = data ? data.fretes : [];
+
 
   function onDeselectItem(item) {
     setSelectedItems((arr) => arr.filter((value) => value !== item));
@@ -413,7 +414,7 @@ function App() {
                 selected={paymentMethod.toLocaleLowerCase() === 'pix'}
                 onClick={(e) => setPaymentMethod(e.target.value)}
               />
-              <label for='pix'>
+              <label htmlFor='pix'>
                 <img src={pix} alt='pix' />
                 Pix
               </label>
