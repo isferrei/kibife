@@ -89,6 +89,16 @@ function App() {
            url
          }
         },
+        kits: allKits (first: $first) {
+          id
+          nome
+          preco
+         descricao
+         foto{
+           id
+           url
+         }
+        },
         fretes: allFretes (first: $first) {
          label
          value
@@ -106,6 +116,7 @@ function App() {
   const bandeijados = data ? data.bandeijados : [];
   const bebidas = data ? data.bebidas : [];
   const diversos = data ? data.diversos : [];
+  const kits = data ? data.kits : [];
   const options = data ? data.fretes : [];
 
 
@@ -344,6 +355,31 @@ function App() {
               </div>
             ))}
           </section>
+          <section id='kits'>
+            <h1>Kits</h1>
+            {kits.map((kit, i) => (
+              <div className='item-container' key={i}>
+                <MenuItem
+                  image={kit.foto?.url ? kit.foto.url : ''}
+                  name={kit.nome}
+                  price={formatPrice(kit.preco)}
+                  description={kit.descricao}
+                  onSelect={() => setSelectedItems((arr) => [...arr, kit])}
+                  onDeselect={() => onDeselectItem(kit)}
+                />
+                {selectedItems.includes(kit) && (
+                  <MenuItemAmount
+                    addItem={() => addItem(kit)}
+                    removeItem={() => removeItem(kit)}
+                    itemAmount={
+                      selectedItems.filter((item) => item.nome === kit.nome)
+                        .length
+                    }
+                  />
+                )}
+              </div>
+            ))}
+          </section>
           <section id='diversos'>
             <h1>Diversos</h1>
             {diversos.map((diverso, i) => (
@@ -506,7 +542,7 @@ function App() {
         </button>
       </main>
       <S.Footer><a href='https://www.instagram.com/otimizatechjf/'>desenvolvido por: Otimiza Tech</a></S.Footer>
-    </div>
+    </div >
   );
 }
 
