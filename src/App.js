@@ -119,6 +119,8 @@ function App() {
   const kits = data ? data.kits : [];
   const options = data ? data.fretes : [];
 
+  console.log('kitssss',data)
+
 
   function onDeselectItem(item) {
     setSelectedItems((arr) => arr.filter((value) => value !== item));
@@ -464,7 +466,7 @@ function App() {
                 selected={paymentMethod.toLocaleLowerCase() === 'dinheiro'}
                 onClick={(e) => setPaymentMethod(e.target.value)}
               />
-              <label for='dinheiro'>
+              <label htmlFor='dinheiro'>
                 <img src={money} alt='money' />
                 Dinheiro
               </label>
@@ -478,7 +480,7 @@ function App() {
                 selected={paymentMethod.toLocaleLowerCase() === 'cartão'}
                 onClick={(e) => setPaymentMethod(e.target.value)}
               />
-              <label for='cartao'>
+              <label htmlFor='cartao'>
                 {' '}
                 <img src={card} alt='card' />
                 Cartão
@@ -498,7 +500,7 @@ function App() {
                   id='sim'
                   onChange={() => setNecessitaTroco(true)}
                 />
-                <label for='sim'>Sim</label>
+                <label htmlFor='sim'>Sim</label>
 
                 <input
                   type='radio'
@@ -507,7 +509,7 @@ function App() {
                   id='não'
                   onChange={() => setNecessitaTroco(false)}
                 />
-                <label for='não'>Não</label>
+                <label htmlFor='não'>Não</label>
               </div>
             </S.TrocoCondition>
             <S.TrocoSection>
